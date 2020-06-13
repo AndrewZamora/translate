@@ -13,6 +13,12 @@ async function getLanguages(target) {
     const [languages, otherInfo] = await translate.getLanguages(target && target);
     console.log(languages, otherInfo.data);
     return languages;
+};
+
+async function detectLanguage(text) {
+    const [{confidence,language, input}, {data}] = await translate.detect(text);
+    console.log(language, confidence, input, data);
+    return language;
 }
 
 const text = 'Hello, world!';
@@ -22,4 +28,5 @@ const target = 'ja';
     await translateText(text, target);
     await getLanguages("ja");
     await getLanguages();
+    await detectLanguage("Hola");
 })();
