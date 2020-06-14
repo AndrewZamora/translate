@@ -5,7 +5,7 @@ const translate = new Translate({ credentials: googleCreds });
 
 async function translateText(text, target) {
     const [translations, otherInfo] = await translate.translate(text, target);
-    console.log(translations, otherInfo.data)
+    console.log(translations, otherInfo.data);
     return translations;
 };
 
@@ -19,14 +19,14 @@ async function detectLanguage(text) {
     const [{confidence,language, input}, {data}] = await translate.detect(text);
     console.log(language, confidence, input, data);
     return language;
-}
+};
 
 const text = 'Hello, world!';
 const target = 'ja';
 
 (async () => {
     await translateText(text, target);
-    await getLanguages("ja");
-    await getLanguages();
     await detectLanguage("Hola");
+    await getLanguages();
+    await getLanguages("ja");
 })();
